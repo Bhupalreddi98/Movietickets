@@ -1,0 +1,1009 @@
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MovieTickets | Online Movie Booking</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            background: #1f1f1f;
+            color: white;
+            padding: 18px 60px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 420px;
+
+            background-image:
+                linear-gradient(
+                    rgba(0,0,0,0.55),
+                    rgba(0,0,0,0.55)
+                ),
+                url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba");
+
+            background-size: cover;
+            background-position: center;
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 40px 20px;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            margin: 0 0 15px;
+        }
+
+        .hero p {
+            font-size: 19px;
+            max-width: 650px;
+            line-height: 1.6;
+        }
+
+        .hero-button {
+            margin-top: 20px;
+
+            padding: 13px 28px;
+
+            background: white;
+            color: #222;
+
+            border: none;
+            border-radius: 5px;
+
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+
+        /* ================= SEARCH ================= */
+
+        .search-box {
+            background: white;
+
+            width: 80%;
+            max-width: 900px;
+
+            margin: -35px auto 0;
+
+            padding: 25px;
+
+            position: relative;
+
+            border-radius: 8px;
+
+            box-shadow: 0 3px 12px #ccc;
+
+            text-align: center;
+        }
+
+        .search-box h2 {
+            margin-top: 0;
+        }
+
+        .search-input {
+            width: 65%;
+
+            padding: 13px;
+
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-button {
+            padding: 13px 22px;
+
+            margin-left: 5px;
+
+            border: none;
+            border-radius: 5px;
+
+            background: #222;
+            color: white;
+
+            cursor: pointer;
+        }
+
+
+        /* ================= COMMON ================= */
+
+        .section {
+            padding: 55px 60px;
+
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .section-description {
+            color: #777;
+            margin-bottom: 35px;
+        }
+
+
+        /* ================= MOVIES ================= */
+
+        .movie-container {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 25px;
+
+            flex-wrap: wrap;
+        }
+
+        .movie-card {
+            background: white;
+
+            width: 280px;
+
+            border-radius: 8px;
+
+            overflow: hidden;
+
+            box-shadow: 0 2px 10px #d5d5d5;
+
+            text-align: left;
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: 180px;
+
+            object-fit: cover;
+        }
+
+        .movie-content {
+            padding: 20px;
+        }
+
+        .movie-content h3 {
+            margin-top: 0;
+        }
+
+        .movie-content p {
+            color: #666;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .movie-button {
+            display: inline-block;
+
+            margin-top: 10px;
+
+            padding: 10px 18px;
+
+            background: #222;
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 5px;
+
+            font-size: 14px;
+        }
+
+
+        /* ================= SHOW TIMES ================= */
+
+        .show-section {
+            background: white;
+
+            padding: 55px 60px;
+
+            text-align: center;
+        }
+
+        .show-container {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 25px;
+
+            flex-wrap: wrap;
+        }
+
+        .show-card {
+            width: 270px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 8px;
+
+            padding: 22px;
+
+            background: #fafafa;
+        }
+
+        .show-card h3 {
+            margin-top: 0;
+        }
+
+        .show-time {
+            display: inline-block;
+
+            padding: 8px 12px;
+
+            margin: 5px;
+
+            background: #222;
+
+            color: white;
+
+            border-radius: 4px;
+
+            font-size: 13px;
+        }
+
+
+        /* ================= THEATRES ================= */
+
+        .theatre-container {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 25px;
+
+            flex-wrap: wrap;
+        }
+
+        .theatre-card {
+            width: 280px;
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 8px;
+
+            box-shadow: 0 2px 8px #ddd;
+        }
+
+        .theatre-card h3 {
+            margin-top: 0;
+        }
+
+        .theatre-card p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+
+        /* ================= OFFERS ================= */
+
+        .offers-section {
+            background: #eeeeee;
+
+            padding: 55px 60px;
+
+            text-align: center;
+        }
+
+        .offer-container {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 25px;
+
+            flex-wrap: wrap;
+        }
+
+        .offer-card {
+            width: 280px;
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 8px;
+
+            box-shadow: 0 2px 8px #ddd;
+        }
+
+        .offer-card h3 {
+            margin-top: 0;
+        }
+
+        .offer-code {
+            font-weight: bold;
+
+            margin-top: 15px;
+
+            padding: 8px;
+
+            background: #f0f0f0;
+
+            border-radius: 4px;
+        }
+
+
+        /* ================= FEATURES ================= */
+
+        .feature-container {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 25px;
+
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            width: 250px;
+
+            padding: 25px;
+
+            background: white;
+
+            border-radius: 8px;
+
+            box-shadow: 0 2px 8px #ddd;
+        }
+
+        .feature h3 {
+            margin-top: 0;
+        }
+
+        .feature p {
+            color: #666;
+
+            line-height: 1.5;
+        }
+
+
+        /* ================= ABOUT ================= */
+
+        .about {
+            background: white;
+
+            padding: 55px 20%;
+
+            text-align: center;
+        }
+
+        .about h2 {
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            color: #666;
+
+            line-height: 1.8;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #1f1f1f;
+
+            color: white;
+
+            padding: 35px 60px;
+
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: white;
+
+            text-decoration: none;
+
+            margin: 0 12px;
+
+            font-size: 14px;
+        }
+
+        footer p {
+            margin: 8px;
+
+            color: #ccc;
+
+            font-size: 14px;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 768px) {
+
+            header {
+                padding: 20px;
+                display: block;
+                text-align: center;
+            }
+
+            nav {
+                margin-top: 15px;
+            }
+
+            nav a {
+                margin: 0 8px;
+                font-size: 13px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .search-box {
+                width: 90%;
+            }
+
+            .search-input {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .search-button {
+                margin-left: 0;
+            }
+
+            .section,
+            .show-section,
+            .offers-section {
+                padding: 40px 20px;
+            }
+
+            .about {
+                padding: 40px 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="logo">
+        MovieTickets
+    </div>
+
+    <nav>
+
+        <a href="#">Home</a>
+
+        <a href="#">Movies</a>
+
+        <a href="#">Theatres</a>
+
+        <a href="#">Offers</a>
+
+        <a href="#">Contact</a>
+
+    </nav>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <h1>Book Your Movie Tickets</h1>
+
+    <p>
+        Discover the latest movies, explore nearby theatres,
+        choose your preferred show time and book your seats easily.
+    </p>
+
+    <button class="hero-button">
+        Explore Movies
+    </button>
+
+</section>
+
+
+<!-- ================= SEARCH ================= -->
+
+<div class="search-box">
+
+    <h2>Find Your Movie</h2>
+
+    <input
+        class="search-input"
+        type="text"
+        placeholder="Search movie, theatre or city">
+
+    <button class="search-button">
+        Search
+    </button>
+
+</div>
+
+
+<!-- ================= NOW SHOWING ================= -->
+
+<section class="section">
+
+    <h2>Now Showing</h2>
+
+    <p class="section-description">
+        Explore movies currently available for booking.
+    </p>
+
+
+    <div class="movie-container">
+
+
+        <div class="movie-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba"
+                alt="Movie Theatre">
+
+            <div class="movie-content">
+
+                <h3>Latest Movies</h3>
+
+                <p>
+                    Explore the latest movies currently
+                    playing in theatres.
+                </p>
+
+                <a href="#" class="movie-button">
+                    View Movies
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="movie-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1485846234645-a62644f84728"
+                alt="Movie Screen">
+
+            <div class="movie-content">
+
+                <h3>Popular Movies</h3>
+
+                <p>
+                    Check out popular movies and
+                    audience favorites.
+                </p>
+
+                <a href="#" class="movie-button">
+                    View Movies
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="movie-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c"
+                alt="Cinema">
+
+            <div class="movie-content">
+
+                <h3>New Releases</h3>
+
+                <p>
+                    Discover new releases and upcoming
+                    movies in theatres.
+                </p>
+
+                <a href="#" class="movie-button">
+                    View Movies
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="movie-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1516280440614-37939bbacd81"
+                alt="Cinema Hall">
+
+            <div class="movie-content">
+
+                <h3>Family Movies</h3>
+
+                <p>
+                    Find family-friendly movies suitable
+                    for everyone.
+                </p>
+
+                <a href="#" class="movie-button">
+                    View Movies
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ================= SHOW TIMES ================= -->
+
+<section class="show-section">
+
+    <h2>Today's Show Times</h2>
+
+    <p class="section-description">
+        Select a movie and choose your preferred show time.
+    </p>
+
+
+    <div class="show-container">
+
+
+        <div class="show-card">
+
+            <h3>Latest Movies</h3>
+
+            <span class="show-time">10:00 AM</span>
+
+            <span class="show-time">01:30 PM</span>
+
+            <span class="show-time">05:00 PM</span>
+
+            <span class="show-time">08:30 PM</span>
+
+        </div>
+
+
+        <div class="show-card">
+
+            <h3>Popular Movies</h3>
+
+            <span class="show-time">11:00 AM</span>
+
+            <span class="show-time">02:30 PM</span>
+
+            <span class="show-time">06:00 PM</span>
+
+            <span class="show-time">09:30 PM</span>
+
+        </div>
+
+
+        <div class="show-card">
+
+            <h3>New Releases</h3>
+
+            <span class="show-time">09:30 AM</span>
+
+            <span class="show-time">12:30 PM</span>
+
+            <span class="show-time">04:30 PM</span>
+
+            <span class="show-time">07:30 PM</span>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ================= THEATRES ================= -->
+
+<section class="section">
+
+    <h2>Popular Theatres</h2>
+
+    <p class="section-description">
+        Find theatres and check available shows.
+    </p>
+
+
+    <div class="theatre-container">
+
+
+        <div class="theatre-card">
+
+            <h3>City Cinema</h3>
+
+            <p>
+                Premium cinema experience with comfortable
+                seating and modern screens.
+            </p>
+
+            <strong>Multiple Shows Available</strong>
+
+        </div>
+
+
+        <div class="theatre-card">
+
+            <h3>Grand Movies</h3>
+
+            <p>
+                Enjoy the latest movies with quality
+                sound and large screens.
+            </p>
+
+            <strong>Multiple Shows Available</strong>
+
+        </div>
+
+
+        <div class="theatre-card">
+
+            <h3>Central Theatre</h3>
+
+            <p>
+                Conveniently located theatre with
+                multiple movie options.
+            </p>
+
+            <strong>Multiple Shows Available</strong>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ================= OFFERS ================= -->
+
+<section class="offers-section">
+
+    <h2>Special Offers</h2>
+
+    <p class="section-description">
+        Save more on your next movie booking.
+    </p>
+
+
+    <div class="offer-container">
+
+
+        <div class="offer-card">
+
+            <h3>Weekend Offer</h3>
+
+            <p>
+                Enjoy special discounts on selected
+                weekend shows.
+            </p>
+
+            <div class="offer-code">
+                Code: WEEKEND
+            </div>
+
+        </div>
+
+
+        <div class="offer-card">
+
+            <h3>First Booking</h3>
+
+            <p>
+                Get a special offer when you make
+                your first booking.
+            </p>
+
+            <div class="offer-code">
+                Code: FIRSTBOOK
+            </div>
+
+        </div>
+
+
+        <div class="offer-card">
+
+            <h3>Family Offer</h3>
+
+            <p>
+                Special pricing options for selected
+                family movie shows.
+            </p>
+
+            <div class="offer-code">
+                Code: FAMILY
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="section">
+
+    <h2>Why MovieTickets?</h2>
+
+    <p class="section-description">
+        Simple and convenient movie booking experience.
+    </p>
+
+
+    <div class="feature-container">
+
+
+        <div class="feature">
+
+            <h3>Easy Booking</h3>
+
+            <p>
+                Quickly search for movies and
+                select your preferred show.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <h3>Multiple Theatres</h3>
+
+            <p>
+                Explore different theatres and
+                available show timings.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <h3>Secure Booking</h3>
+
+            <p>
+                Simple and reliable ticket booking
+                experience.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <h3>Best Offers</h3>
+
+            <p>
+                Explore available offers and
+                promotional booking options.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section class="about">
+
+    <h2>About MovieTickets</h2>
+
+    <p>
+        MovieTickets is an online movie booking application
+        designed to make discovering movies and booking
+        theatre tickets simple and convenient.
+    </p>
+
+    <p>
+        Browse movies, explore theatres, check show timings
+        and choose the experience that works best for you.
+    </p>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-links">
+
+        <a href="#">Home</a>
+
+        <a href="#">Movies</a>
+
+        <a href="#">Theatres</a>
+
+        <a href="#">Offers</a>
+
+        <a href="#">Contact</a>
+
+    </div>
+
+    <p>
+        MovieTickets © 2026
+    </p>
+
+    <p>
+        Online Movie Ticket Booking Application
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
